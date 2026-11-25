@@ -9,7 +9,7 @@ async function connectDatabase() {
         console.log('Database synchronized');
 
     } catch (error) {
-        console.error('Database connection failed:', err.message);
+        console.error('Database connection failed:', error.message);
         process.exit(1);
     }
 }

@@ -1,5 +1,5 @@
 const express = require('express');
-const config = require('./config/db');
+const connectDatabase = require('./config/db');
 
 const app = express();
 const PORT = 3000;
@@ -7,7 +7,7 @@ const PORT = 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/api/users', require('./routes/api'));
+app.use('/api', require('./routes/api'));
 
 async function startServer() {
     await connectDatabase();

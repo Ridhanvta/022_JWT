@@ -1,5 +1,5 @@
 const db = require('../models');
-const bycrypt = require('bcrypt');
+const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const User = db.User;
@@ -24,7 +24,7 @@ async function register(req, res) {
             });
         }
 
-        const hashedPassword = await bycrypt.hash(password, 10);
+        const hashedPassword = await bcrypt.hash(password, 10);
 
         const user = await User.create({
             email,
@@ -65,7 +65,7 @@ async function login(req, res) {
             });
         }
 
-        const isMatch = await bycrypt.compare(password, user.password);
+        const isMatch = await bcrypt.compare(password, user.password);
 
         if (!isMatch) {
             return res.status(401).json({ 
